@@ -4,20 +4,24 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.List;
+
 /**
  * Created by c4q on 12/12/17.
  */
 
-public class GoogleViewHolder extends RecyclerView.ViewHolder {
+public class BBCViewHolder extends RecyclerView.ViewHolder {
     private TextView articleList;
-    public GoogleViewHolder(View itemView) {
+    public BBCViewHolder(View itemView) {
         super(itemView);
         articleList= (TextView) itemView.findViewById(R.id.listofarticles);
 
     }
 
-    public void BindingArticlesIGuess(GoogleModel instantiatedModel){
+    public void BindingArticlesIGuess(BBCSport instantiatedModel){
+//        String message=articleList.getText().toString();
 
-        instantiatedModel.setArticle(articleList.toString());
+//        instantiatedModel.setArticle(message);
+        articleList.setText(instantiatedModel.getArticle());
     }
 }
