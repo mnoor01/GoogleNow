@@ -1,12 +1,15 @@
 package com.example.c4q.hw12googlenow.controller;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.c4q.hw12googlenow.R;
+import com.example.c4q.hw12googlenow.SecondActivity;
 import com.example.c4q.hw12googlenow.model.Articles;
 
 /**
@@ -47,10 +50,25 @@ public class ArticleAdapter extends RecyclerView.Adapter<ArticleAdapter.ArticleV
             articleAuthor=itemView.findViewById(R.id.articleAuthor);
             articleDescription=itemView.findViewById(R.id.articleDescription);
         }
-        public void onBind(Articles articleModel){
+        public void onBind(final Articles articleModel){
             articleTitle.setText(articleModel.getTitle());
             articleAuthor.setText(articleModel.getAuthor());
             articleDescription.setText(articleModel.getDescription());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(itemView.getContext(), "Enjoy reading", Toast.LENGTH_SHORT).show();
+                    Intent intent= new Intent(itemView.getContext(),SecondActivity.class);
+                    intent.putExtra("hey",articleModel.getTitle());
+                    intent.putExtra("nice",articleModel.getAuthor());
+                    intent.putExtra("you",articleModel.getDescription());
+                    intent.putExtra("we",articleModel.getPublishedAt());
+                    intent.putExtra("us",articleModel.getUrl());
+                    intent.putExtra("all",articleModel.getUrlToImage());
+                    itemView.getContext().startActivity(intent);
+                }
+            });
 
 
         }

@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private BBCSport sport;
     private Button openButton;
     private BBCmodel bbcModel;
+    private static final String TAG="JSon testing";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +57,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<BBCmodel> call, Response<BBCmodel> response) {
                 bbcModel = response.body();
 
-                Log.d("MainActivitty",bbcModel.getArticles()[0].getAuthor());
-                Log.d("MainActivitty",bbcModel.getArticles()[0].getTitle());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getDescription());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getPublishedAt());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getUrl());
+                Log.d(TAG,bbcModel.getArticles()[0].getAuthor());
+                Log.d(TAG,bbcModel.getArticles()[0].getTitle());
+                Log.d(TAG,bbcModel.getArticles()[0].getDescription());
+                Log.d(TAG,bbcModel.getArticles()[0].getPublishedAt());
+                Log.d(TAG,bbcModel.getArticles()[0].getUrl());
 
 
             }
