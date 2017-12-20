@@ -20,7 +20,7 @@ import com.example.c4q.hw12googlenow.model.NYT_TopStories;
 public class NYT_ViewHolder extends RecyclerView.ViewHolder {
 
     private final static String TAG = "HELP!!!!";
-    private ImageView article_Image;
+    public ImageView article_Image;
     private TextView article_Title;
     private TextView article_Byline;
 
@@ -33,16 +33,19 @@ public class NYT_ViewHolder extends RecyclerView.ViewHolder {
     article_Byline = itemView.findViewById(R.id.byline_view);
     }
 
-    public void onBind(NYT_TopStories results) {
 
-        article_Title.setText(results.getResults().get(0).getTitle());
-        article_Byline.setText(results.getResults().get(0).getByline());
+    public void onBind(NYT_TopStories.Results results) {
 
-        String imgURL = results.getResults().get(0).getMultimedia().get(0).getUrl();
-        Glide.with(article_Image.getContext())
-                .load(imgURL)
-                //try to resize the image to make more visible
-                .into(article_Image);
+        article_Title.setText(results.getTitle());
+        article_Byline.setText(results.getByline());
+
+        if (!results.getMultimedia().isEmpty())   {
+            String imgURL = results.getMultimedia().get(0).getUrl();
+            Glide.with(article_Image.getContext())
+                    .load(imgURL)
+                    //try to resize the image to make more visible
+                    .into(article_Image);
+        }
 
         Log.d(TAG, String.valueOf(article_Title));
     }

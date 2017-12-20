@@ -23,24 +23,26 @@ public class MainActivity extends AppCompatActivity {
     List<NYT_TopStories> NYT_Data = new ArrayList<>();
     private static final String TAG = "HELP!!! ";
     String NYT_Top_APIKey = "d752126a9dec4034b7f3e0e71ab84825";
+    NYT_TopStories nytTopStories;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                NYT_API_Caller();
-            }
-        }, 1000);
+        NYT_API_Caller();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                NYT_API_Caller();
+//            }
+//        }, 1000);
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 init_Recycler();
             }
-        }, 3000);
+        }, 5000);
     }
 
 
@@ -59,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<NYT_TopStories> call, Response<NYT_TopStories> response) {
                 if (response.isSuccessful()) {
-                    NYT_TopStories nytTopStories = response.body();
+                    nytTopStories = response.body();
                     NYT_Data.add(nytTopStories);
+                    nytTopStories.getResults();
                     Log.d(TAG, "onResponse: " + NYT_Data);
                 }
             }
@@ -77,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView times_recyclerView = findViewById(R.id.nyt_recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         times_recyclerView.setLayoutManager(layoutManager);
-        NYT_Adapter nyt_adapter = new NYT_Adapter(NYT_Data);
+        NYT_Adapter nyt_adapter = new NYT_Adapter(nytTopStories.getResults());
         times_recyclerView.setAdapter(nyt_adapter);
         }
 }

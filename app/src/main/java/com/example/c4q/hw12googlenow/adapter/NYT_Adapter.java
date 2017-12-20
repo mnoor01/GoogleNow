@@ -1,6 +1,9 @@
 package com.example.c4q.hw12googlenow.adapter;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +20,10 @@ import java.util.List;
 
 public class NYT_Adapter extends RecyclerView.Adapter<NYT_ViewHolder> {
 
-    public List<NYT_TopStories> topStoriesList;
+    public List<NYT_TopStories.Results> topStoriesList;
+    private static final String TAG = "HELP!!!!";
 
-
-    public NYT_Adapter(List<NYT_TopStories> topStoriesList){
+    public NYT_Adapter(List<NYT_TopStories.Results> topStoriesList){
         this.topStoriesList = topStoriesList;
     }
 
@@ -32,9 +35,19 @@ public class NYT_Adapter extends RecyclerView.Adapter<NYT_ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(NYT_ViewHolder holder, int position) {
-        NYT_TopStories nyt_topStories = topStoriesList.get(position);
+    public void onBindViewHolder(final NYT_ViewHolder holder, final int position) {
+        NYT_TopStories.Results nyt_topStories = topStoriesList.get(position);
         holder.onBind(nyt_topStories);
+
+        holder.article_Image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String url = topStoriesList.get(position).getUrl();
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                holder.itemView.getContext().startActivity(i);
+            }
+        });
     }
 
     @Override
