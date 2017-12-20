@@ -13,5 +13,5 @@ import retrofit2.http.GET;
 
 public interface UsersApi {
     @GET("top-headlines?sources=bbc-sport&apiKey=75c4a1e76269460892c3bb43746f73ad")
-    Call<BBCmodel> getModel();
+    Call<BBCmodel> getModel();//So the call gives me the object inside the website that I make for the model
 }

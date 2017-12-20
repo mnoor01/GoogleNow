@@ -32,9 +32,7 @@ import retrofit2.Retrofit;
 
 public class MainActivity extends AppCompatActivity {
     private String sNewsAPI;
-    private List<BBCSport> list;
     private List<String> aNames;
-    private BBCSport sport;
     private Button openButton;
     private BBCmodel bbcModel;
     private static final String TAG="JSon testing";
@@ -43,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        list = new ArrayList<>();
         ApiClient apiClient = new ApiClient();
+        //so I made a class instead of
+        //Retrotfit retrofit= new Retrofit.builder().baseurl(puturl).convertToGson(GsonConcerter).build.
         Retrofit retrofit = apiClient.getClient();
         final UsersApi bbcService = retrofit.create(UsersApi.class);
         Call<BBCmodel> getBBCModel = bbcService.getModel();
@@ -125,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         googleRecylerView.setAdapter(adapter);
         googleRecylerView.setLayoutManager(linearLayoutManager);
     }
-
+//From here on it is dead code
     public class asyncHTTPForSports extends AsyncTask<String, Void, String> {
 
         @Override
@@ -173,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject myArticles = article.getJSONObject(i);
                 String articleTitle = myArticles.getString("title");
                 aNames.add(articleTitle);
-                list.add(new BBCSport(articleTitle));
                 Log.d("title", articleTitle);
 
             }

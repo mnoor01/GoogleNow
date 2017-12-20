@@ -14,5 +14,5 @@ public interface NYTimesAPI {
     String NYT_Top_APIKey = "d752126a9dec4034b7f3e0e71ab84825";
 
     @GET("topstories/v2/home.json?" + NYT_Top_APIKey)
-    Call<NYT_TopStories> //getter for NYT_TopStories object
+    Call<NYT_TopStories> nice();//getter for NYT_TopStories object
 }
