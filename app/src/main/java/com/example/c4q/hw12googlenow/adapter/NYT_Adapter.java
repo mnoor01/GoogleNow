@@ -17,10 +17,10 @@ import java.util.List;
 
 public class NYT_Adapter extends RecyclerView.Adapter<NYT_ViewHolder> {
 
-    public List<NYT_TopStories.Results> topStoriesList;
+    public List<NYT_TopStories> topStoriesList;
 
 
-    public NYT_Adapter(List<NYT_TopStories.Results> topStoriesList){
+    public NYT_Adapter(List<NYT_TopStories> topStoriesList){
         this.topStoriesList = topStoriesList;
     }
 
@@ -33,7 +33,7 @@ public class NYT_Adapter extends RecyclerView.Adapter<NYT_ViewHolder> {
 
     @Override
     public void onBindViewHolder(NYT_ViewHolder holder, int position) {
-        NYT_TopStories.Results nyt_topStories = topStoriesList.get(position);
+        NYT_TopStories nyt_topStories = topStoriesList.get(position);
         holder.onBind(nyt_topStories);
     }
 

@@ -35,8 +35,9 @@ public class NYT_ViewHolder extends RecyclerView.ViewHolder {
     article_Publised_Date = itemView.findViewById(R.id.published_date_view);
     }
 
-    public void onBind(NYT_TopStories.Results results) {
-        article_Title.setText(results.getTitle());
+    public void onBind(NYT_TopStories results) {
+
+        article_Title.setText(results.getResults().get(0).getTitle());
         Log.d(TAG, String.valueOf(article_Title));
     }
 }

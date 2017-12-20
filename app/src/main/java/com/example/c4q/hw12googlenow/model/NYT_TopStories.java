@@ -13,7 +13,7 @@ public class NYT_TopStories {
     String section;
     String last_updated;
     int num_results;
-    List<Results> results= new ArrayList<>();
+    List<Results> results;
 
     public String getStatus() {
         return this.status;
@@ -27,7 +27,7 @@ public class NYT_TopStories {
         String section;
         String subsection;
         String title;
-        String _abstract;
+//        String abstract;
         String url;
         String byline;
         String item_type;
