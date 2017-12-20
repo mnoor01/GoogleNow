@@ -30,12 +30,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         NYT_API_Caller();
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                NYT_API_Caller();
-//            }
-//        }, 1000);
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -44,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }, 5000);
     }
-
-
 
 
 

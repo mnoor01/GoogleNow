@@ -29,6 +29,7 @@ public class NYT_TopStories {
         String title;
         String url;
         String byline;
+//        String abstract;
         String item_type;
         String updated_type;
         String created_date;
