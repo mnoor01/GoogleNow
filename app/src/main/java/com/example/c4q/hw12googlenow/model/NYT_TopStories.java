@@ -27,7 +27,6 @@ public class NYT_TopStories {
         String section;
         String subsection;
         String title;
-//        String abstract;
         String url;
         String byline;
         String item_type;
@@ -49,6 +48,10 @@ public class NYT_TopStories {
 
         public String getByline() {
             return this.byline;
+        }
+
+        public String getPublished_date() {
+            return published_date;
         }
 
         public List<multimedia> getMultimedia() {
