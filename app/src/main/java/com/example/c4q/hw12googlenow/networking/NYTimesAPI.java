@@ -19,11 +19,8 @@ public interface NYTimesAPI {
 
     String NYT_Top_APIKey = "d752126a9dec4034b7f3e0e71ab84825";
 
-<<<<<<< HEAD
+
     @GET("/svc/topstories/v2/{section}.json")
     Call<NYT_TopStories> getNYT_TopStories(@Path ("section") String section, @Query("apikey") String apikey);
-=======
-    @GET("topstories/v2/home.json?" + NYT_Top_APIKey)
-    Call<NYT_TopStories> nice();//getter for NYT_TopStories object
->>>>>>> 58b17a0536e01faf5089586f5891f4b6d8fed8da
+
 }
