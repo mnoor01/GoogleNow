@@ -36,11 +36,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private String sNewsAPI;
-    private List<BBCSport> list;
     private List<String> aNames;
-    private BBCSport sport;
     private Button openButton;
     private BBCmodel bbcModel;
+
 
     List<NYT_TopStories> NYT_Data = new ArrayList<>();
     private static final String TAG = "HELP!!! ";
@@ -51,8 +50,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        list = new ArrayList<>();
         ApiClient apiClient = new ApiClient();
+        //so I made a class instead of
+        //Retrotfit retrofit= new Retrofit.builder().baseurl(puturl).convertToGson(GsonConcerter).build.
         Retrofit retrofit = apiClient.getClient();
         final UsersApi bbcService = retrofit.create(UsersApi.class);
         Call<BBCmodel> getBBCModel = bbcService.getModel();
@@ -74,11 +74,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<BBCmodel> call, Response<BBCmodel> response) {
                 bbcModel = response.body();
 
-                Log.d("MainActivitty",bbcModel.getArticles()[0].getAuthor());
-                Log.d("MainActivitty",bbcModel.getArticles()[0].getTitle());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getDescription());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getPublishedAt());
-                Log.d("MainActivity",bbcModel.getArticles()[0].getUrl());
+                Log.d(TAG,bbcModel.getArticles()[0].getAuthor());
+                Log.d(TAG,bbcModel.getArticles()[0].getTitle());
+                Log.d(TAG,bbcModel.getArticles()[0].getDescription());
+                Log.d(TAG,bbcModel.getArticles()[0].getPublishedAt());
+                Log.d(TAG,bbcModel.getArticles()[0].getUrl());
 
 
             }
@@ -88,16 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
-//        aNames = new ArrayList<>();
-//        sNewsAPI = "https://newsapi.org/v2/top-headlines?sources=bbc-sport&apiKey=75c4a1e76269460892c3bb43746f73ad";
-//       AsyncTask nice= new asyncHTTPForSports().execute(sNewsAPI);
-//       openButton= (Button) findViewById(R.id.openbutton);
-//        Retrofit retrofit= new Retrofit.Builder()
-//                .baseUrl("https://techcrunch.com/video/crunchreport/")
-//                .addConverterFactory(GsonConverterFactory.create())
-//                .build();
-//        Call<List<Repository>> call= ;
-//
+
        new Handler().postDelayed(new Runnable() {
            @Override
            public void run() {
@@ -105,31 +96,7 @@ public class MainActivity extends AppCompatActivity {
                intiRec();
            }
        }, 5000);
-//
-//       openButton.setOnClickListener(new View.OnClickListener() {
-//           @Override
-//           public void onClick(View v) {
-//
-//
-//                Bundle bundle= new Bundle();
-//               Intent intent= new Intent(MainActivity.this, SecondActivity.class);
-//               for (int i = 0; i < aNames.size(); i++) {
-//                   bundle.putString("nice",aNames.get(i));
-//               }
-//
-//
-//               startActivity(intent);
-//
-//           }
-//       });
-//       String news=nice.toString();
-//       aNames.add(news);
-//       sport.setArticle(aNames.toString());
-//       list.add(sport);
 
-
-//        LinearLayoutManager
-//nowWeAreGoingToparseAspectsInTheArticle(sNewsAPI);
 
 
     }
@@ -142,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         googleRecylerView.setAdapter(adapter);
         googleRecylerView.setLayoutManager(linearLayoutManager);
     }
+//From here on it is dead code
+
 
     @SuppressLint("NewApi")
     public class asyncHTTPForSports extends AsyncTask<String, Void, String> {
@@ -183,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void nowWeAreGoingToparseAspectsInTheArticle(String result) {
         try {
             JSONObject response = new JSONObject(result);
@@ -191,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject myArticles = article.getJSONObject(i);
                 String articleTitle = myArticles.getString("title");
                 aNames.add(articleTitle);
-                list.add(new BBCSport(articleTitle));
                 Log.d("title", articleTitle);
 
             }
@@ -242,3 +211,6 @@ public class MainActivity extends AppCompatActivity {
         times_recyclerView.setAdapter(nyt_adapter);
         }
 }
+/*
+I have made some changes
+ */

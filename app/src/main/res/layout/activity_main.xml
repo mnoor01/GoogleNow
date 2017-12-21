@@ -12,10 +12,11 @@
         android:id="@+id/googlerecyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/openbutton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
     <Button
         android:id="@+id/openbutton"
         android:hint="open"
@@ -33,7 +34,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp">
-
 
     </android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>
