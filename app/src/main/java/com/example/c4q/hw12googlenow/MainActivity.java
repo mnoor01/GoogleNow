@@ -10,7 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Button;
 
-import com.example.c4q.hw12googlenow.controller.ArticleAdapter;
+import com.example.c4q.hw12googlenow.adapter.ArticleAdapter;
 import com.example.c4q.hw12googlenow.model.BBCmodel;
 
 import org.json.JSONArray;
@@ -28,6 +28,8 @@ import java.util.List;
 import com.example.c4q.hw12googlenow.adapter.NYT_Adapter;
 import com.example.c4q.hw12googlenow.model.NYT_TopStories;
 import com.example.c4q.hw12googlenow.networking.NYTimesAPI;
+import com.example.c4q.hw12googlenow.networking.WeatherRetrofit;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private List<String> aNames;
     private Button openButton;
     private BBCmodel bbcModel;
-
+    private Retrofit weatherNetwork;
 
     List<NYT_TopStories> NYT_Data = new ArrayList<>();
     private static final String TAG = "HELP!!! ";
@@ -50,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        WeatherRetrofit weatherRetrofit = new WeatherRetrofit();
+        weatherNetwork = weatherRetrofit.getClient();
+        weatherRetrofit.getResponse(weatherNetwork);
+
         ApiClient apiClient = new ApiClient();
         //so I made a class instead of
         //Retrotfit retrofit= new Retrofit.builder().baseurl(puturl).convertToGson(GsonConcerter).build.
@@ -67,18 +74,16 @@ public class MainActivity extends AppCompatActivity {
         }, 5000);
 
 
-
-
         getBBCModel.enqueue(new Callback<BBCmodel>() {
             @Override
             public void onResponse(Call<BBCmodel> call, Response<BBCmodel> response) {
                 bbcModel = response.body();
 
-                Log.d(TAG,bbcModel.getArticles()[0].getAuthor());
-                Log.d(TAG,bbcModel.getArticles()[0].getTitle());
-                Log.d(TAG,bbcModel.getArticles()[0].getDescription());
-                Log.d(TAG,bbcModel.getArticles()[0].getPublishedAt());
-                Log.d(TAG,bbcModel.getArticles()[0].getUrl());
+                Log.d(TAG, bbcModel.getArticles()[0].getAuthor());
+                Log.d(TAG, bbcModel.getArticles()[0].getTitle());
+                Log.d(TAG, bbcModel.getArticles()[0].getDescription());
+                Log.d(TAG, bbcModel.getArticles()[0].getPublishedAt());
+                Log.d(TAG, bbcModel.getArticles()[0].getUrl());
 
 
             }
@@ -89,14 +94,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       new Handler().postDelayed(new Runnable() {
-           @Override
-           public void run() {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-               intiRec();
-           }
-       }, 5000);
-
+                intiRec();
+            }
+        }, 5000);
 
 
     }
@@ -170,12 +174,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-       public void NYT_API_Caller(){
-
-
+    public void NYT_API_Caller() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.nytimes.com/svc/")
@@ -203,13 +202,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-        public void init_Recycler(){
+    public void init_Recycler() {
         RecyclerView times_recyclerView = findViewById(R.id.nyt_recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         times_recyclerView.setLayoutManager(layoutManager);
         NYT_Adapter nyt_adapter = new NYT_Adapter(nytTopStories.getResults());
         times_recyclerView.setAdapter(nyt_adapter);
-        }
+    }
 }
 /*
 I have made some changes
