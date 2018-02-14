@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/GoogleNow.iml" filepath="$PROJECT_DIR$/GoogleNow.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/hw12GoogleNow.iml" filepath="$PROJECT_DIR$/hw12GoogleNow.iml" />
     </modules>
   </component>
 </project>
